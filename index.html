@@ -7,6 +7,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<script src="html2pdf.bundle.min.js"></script>
 <style>
 :root {
   --g: #00522a;
@@ -1525,6 +1526,237 @@ textarea.modern-input {
   color: var(--g);
 }
 
+/* PDF Generation & Export Styles */
+.btn-spinner {
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  border: 2px solid currentColor;
+  border-right-color: transparent;
+  border-radius: 50%;
+  animation: spin 0.6s linear infinite;
+  vertical-align: middle;
+  margin-right: 6px;
+}
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.pdf-doc {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
+  color: #142019 !important;
+  background: #ffffff !important;
+  padding: 28px 32px;
+  line-height: 1.5;
+  box-sizing: border-box;
+}
+.pdf-header {
+  border-bottom: 2.5px solid #e4a000;
+  padding-bottom: 12px;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.pdf-brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.pdf-logo {
+  height: 38px;
+  display: block;
+}
+.pdf-tag {
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  color: #00522a;
+  text-transform: uppercase;
+}
+.pdf-title-block {
+  margin-bottom: 22px;
+}
+.pdf-title {
+  font-size: 24px;
+  font-weight: 800;
+  color: #00522a;
+  letter-spacing: -0.02em;
+  margin: 0 0 8px;
+}
+.pdf-meta {
+  font-size: 12.5px;
+  color: #57665c;
+  display: flex;
+  gap: 24px;
+  flex-wrap: wrap;
+  padding: 8px 0;
+  border-bottom: 1px solid #e2ded4;
+}
+.pdf-card {
+  border: 1px solid #e2ded4;
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 20px;
+  background: #ffffff;
+  page-break-inside: avoid;
+  break-inside: avoid;
+}
+.pdf-hero-card {
+  display: flex;
+  gap: 24px;
+  align-items: center;
+  background: #fbfaf7;
+  border-color: #dcd7ca;
+}
+.pdf-score-box {
+  text-align: center;
+  padding-right: 24px;
+  border-right: 1px solid #e2ded4;
+  min-width: 170px;
+}
+.pdf-score-label {
+  font-size: 11px;
+  font-weight: 800;
+  color: #57665c;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+.pdf-score-val {
+  font-size: 38px;
+  font-weight: 800;
+  line-height: 1;
+  margin-bottom: 8px;
+}
+.pdf-interp-box {
+  flex: 1;
+}
+.pdf-section {
+  margin-top: 24px;
+  margin-bottom: 24px;
+}
+.pdf-section-title {
+  font-size: 17px;
+  font-weight: 800;
+  color: #00522a;
+  margin: 0 0 6px;
+  padding-bottom: 4px;
+  border-bottom: 1.5px solid #00522a;
+}
+.pdf-section-desc {
+  font-size: 12.5px;
+  color: #57665c;
+  margin: 0 0 14px;
+}
+.pdf-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 12px 0 18px;
+  font-size: 12px;
+}
+.pdf-table th {
+  background: #00522a;
+  color: #ffffff;
+  padding: 8px 10px;
+  text-align: left;
+  font-weight: 700;
+  font-size: 11.5px;
+  letter-spacing: 0.02em;
+}
+.pdf-table td {
+  border-bottom: 1px solid #e2ded4;
+  padding: 8px 10px;
+  vertical-align: top;
+  color: #142019;
+}
+.pdf-table tr:nth-child(even) td {
+  background: #fbfaf7;
+}
+.pdf-pill {
+  display: inline-block;
+  padding: 3px 9px;
+  border-radius: 999px;
+  color: #ffffff !important;
+  font-weight: 700;
+  font-size: 10.5px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+}
+.pdf-radar-wrap {
+  text-align: center;
+  padding: 24px;
+  page-break-inside: avoid;
+  break-inside: avoid;
+}
+.pdf-radar-wrap svg {
+  max-width: 420px;
+  height: auto;
+  margin: 0 auto;
+}
+.pdf-doc .rad text {
+  fill: #142019 !important;
+  font-family: 'Inter', sans-serif !important;
+  font-size: 11px;
+}
+.pdf-doc .rad .rl {
+  fill: #57665c !important;
+  font-size: 9px;
+}
+.pdf-doc .rad .gr {
+  fill: none;
+  stroke: #dcd7ca !important;
+  stroke-width: 1;
+}
+.pdf-qa-card {
+  border: 1px solid #e2ded4;
+  border-radius: 10px;
+  padding: 14px 16px;
+  margin-bottom: 12px;
+  background: #ffffff;
+  page-break-inside: avoid;
+  break-inside: avoid;
+}
+.pdf-qa-num {
+  font-size: 10.5px;
+  font-weight: 800;
+  color: #e4a000;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+.pdf-qa-q {
+  font-size: 13.5px;
+  font-weight: 700;
+  color: #00522a;
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+.pdf-qa-a {
+  font-size: 12.5px;
+  line-height: 1.55;
+  color: #142019;
+  background: #fbfaf7;
+  border-radius: 8px;
+  padding: 10px 12px;
+  border: 1px solid #eeebe2;
+}
+.pdf-empty {
+  color: #8c9c91;
+  font-style: italic;
+}
+.pdf-footer {
+  margin-top: 28px;
+  padding-top: 14px;
+  border-top: 1px solid #e2ded4;
+  font-size: 11px;
+  color: #738276;
+  line-height: 1.5;
+  page-break-inside: avoid;
+  break-inside: avoid;
+}
+
 @media print {
   header, .top-nav-bar, .nav-actions, .noprint {
     display: none !important;
@@ -2057,7 +2289,7 @@ function render(direction = "next") {
         <div class="nav-actions">
           <button class="btn s" onclick="transitionTo(13, 6, 'prev')">← Back to Zone 13</button>
           <div style="display:flex; gap:10px; flex-wrap:wrap;">
-            <button class="btn s" onclick="dlWork()">Download interview workbook</button>
+            <button class="btn s" onclick="dlWork(this)"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="margin-right:6px;"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>Download interview workbook (.pdf)</button>
             <button class="btn" onclick="transitionTo(15, 0, 'next')">See my report →</button>
           </div>
         </div>
@@ -2257,33 +2489,228 @@ function sections(R) {
 
 const dd = () => new Date().toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric" });
 
-function docHTML(ti, body) {
-  return `<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:w="urn:schemas-microsoft-com:office:word"><head><meta charset="utf-8"><title>${ti}</title><style>body{font-family:Georgia,serif;color:#1b2a22;font-size:11pt;line-height:1.5}h1,h2,h3,h4{color:#00522a}h1{border-bottom:3px solid #e4a000;padding-bottom:4px}table{border-collapse:collapse;width:100%}td,th{border:1px solid #bbb;padding:7px;font:10pt Arial,sans-serif;text-align:left;vertical-align:top}th{background:#00522a;color:#fff}.card{border:1px solid #ccc;padding:8px 12px;margin:12px 0}.sm{color:#666;font-size:9.5pt}.pl{width:100%}</style></head><body><p style="color:#c78a00;font:bold 9pt Arial;letter-spacing:2px">PHOSZADE · VISIONEERING 2027</p><h1>${ti}</h1><p>Participant: <b>${esc(S.nm || "—")}</b> &nbsp;|&nbsp; Date: ${dd()}</p>${body}</body></html>`;
+function pdfHeaderHTML(title) {
+  const logoEl = document.querySelector(".header-logo-btn img");
+  const logoSrc = logoEl ? logoEl.src : "";
+  return `
+    <div class="pdf-header">
+      <div class="pdf-brand">
+        ${logoSrc ? `<img src="${logoSrc}" class="pdf-logo" alt="Phoszade">` : ""}
+      </div>
+      <div class="pdf-tag">VISIONEERING 2027 · DIAGNOSTIC ASSESSMENT</div>
+    </div>
+    <div class="pdf-title-block">
+      <h1 class="pdf-title">${title}</h1>
+      <div class="pdf-meta">
+        <div><span>Participant:</span> <b>${esc(S.nm || "Anonymous Participant")}</b></div>
+        <div><span>Date:</span> <b>${dd()}</b></div>
+        <div><span>Diagnostic Instrument:</span> <b>HZOS Capacity Model (13 Zones)</b></div>
+      </div>
+    </div>
+  `;
 }
 
-function dl(f, h) {
-  const b = new Blob(["\ufeff" + h], { type: "application/msword" });
-  const a = document.createElement("a");
-  a.href = URL.createObjectURL(b);
-  a.download = f + (S.nm ? "-" + S.nm.trim().replace(/[^\w]+/g, "-") : "") + ".doc";
-  document.body.appendChild(a);
-  a.click();
-  a.remove();
+function generatePDF(filename, htmlContent, btnElement) {
+  let origText = "";
+  if (btnElement) {
+    origText = btnElement.innerHTML;
+    btnElement.innerHTML = `<span class="btn-spinner"></span> Generating PDF...`;
+    btnElement.disabled = true;
+  }
+
+  const container = document.createElement("div");
+  container.className = "pdf-export-container";
+  container.style.cssText = "position:fixed;left:-9999px;top:0;width:780px;background:#ffffff!important;color:#142019!important;box-sizing:border-box;z-index:-9999;";
+  container.innerHTML = htmlContent;
+  document.body.appendChild(container);
+
+  const cleanName = filename + (S.nm ? "-" + S.nm.trim().replace(/[^\w]+/g, "-") : "") + ".pdf";
+
+  const finish = () => {
+    if (container.parentNode) container.parentNode.removeChild(container);
+    if (btnElement) {
+      btnElement.innerHTML = origText;
+      btnElement.disabled = false;
+    }
+  };
+
+  if (typeof html2pdf !== "undefined") {
+    const opt = {
+      margin: [10, 10, 10, 10],
+      filename: cleanName,
+      image: { type: "jpeg", quality: 0.98 },
+      html2canvas: {
+        scale: 2,
+        useCORS: true,
+        letterRendering: true,
+        logging: false,
+        backgroundColor: "#ffffff"
+      },
+      jsPDF: { unit: "mm", format: "a4", orientation: "portrait" },
+      pagebreak: { mode: ["avoid-all", "css", "legacy"] }
+    };
+
+    html2pdf()
+      .set(opt)
+      .from(container)
+      .save()
+      .then(finish)
+      .catch(err => {
+        console.error("PDF generation error:", err);
+        finish();
+        fallbackPrintPDF(htmlContent, cleanName);
+      });
+  } else {
+    finish();
+    fallbackPrintPDF(htmlContent, cleanName);
+  }
 }
 
-function dlWork() {
+function fallbackPrintPDF(htmlContent, title) {
+  const w = window.open("", "_blank");
+  if (!w) {
+    alert("Please allow popups to export your PDF report.");
+    return;
+  }
+  w.document.write(`<!DOCTYPE html><html><head><meta charset="utf-8"><title>${title}</title><style>
+    body { font-family: Inter, -apple-system, sans-serif; padding: 24px; color: #142019; background: #fff; }
+    @media print { body { padding: 0; } }
+  </style></head><body>${htmlContent}<script>window.onload=()=>{window.print();}<\/script></body></html>`);
+  w.document.close();
+}
+
+function dlWork(btn) {
   const R = calc();
-  let b = `<h2>Part Two: Constraint Discovery Interview</h2><table><tr><th style="width:42%">Question</th><th>Your response</th></tr>${Q.map((q, i) => `<tr><td>${i + 1}. ${q}</td><td>${esc(S.q[i] || "—").replace(/\n/g, "<br>")}</td></tr>`).join("")}</table><h2>Zone evidence log</h2><table><tr><th>Zone</th><th>Avg score</th><th>Evidence level</th><th>Evidence provided</th></tr>${Z.map((z, k) => `<tr><td>${z[0]}</td><td>${R[k].avg === null ? "N/A" : R[k].avg.toFixed(1)}</td><td>${S.l[k] === "" || S.l[k] === undefined ? "Not selected" : EV[S.l[k]]}</td><td>${esc(S.t[k] || "—").replace(/\n/g, "<br>")}</td></tr>`).join("")}</table>`;
-  dl("HZOS-Interview-Workbook", docHTML("HZOS Interview Workbook", b));
+  const content = `
+    <div class="pdf-doc">
+      ${pdfHeaderHTML("Constraint Discovery Interview & Evidence Workbook")}
+
+      <div class="pdf-section">
+        <h2 class="pdf-section-title">Part Two: Constraint Discovery Interview</h2>
+        <p class="pdf-section-desc">Qualitative inquiry exploring underlying operational friction, root causes, and stagnation patterns.</p>
+        
+        <div class="pdf-qa-list">
+          ${Q.map((q, i) => `
+            <div class="pdf-qa-card">
+              <div class="pdf-qa-num">QUESTION ${i + 1} OF 10</div>
+              <div class="pdf-qa-q">${q}</div>
+              <div class="pdf-qa-a">${S.q[i] && S.q[i].trim() ? esc(S.q[i]).replace(/\n/g, "<br>") : "<span class='pdf-empty'>No response recorded.</span>"}</div>
+            </div>
+          `).join("")}
+        </div>
+      </div>
+
+      <div class="pdf-section" style="page-break-before: always;">
+        <h2 class="pdf-section-title">Zone Evidence & Validation Log</h2>
+        <p class="pdf-section-desc">Audited evidence records and verification ratings across all 13 capacity dimensions.</p>
+
+        <table class="pdf-table">
+          <thead>
+            <tr>
+              <th style="width:28%">Zone Dimension</th>
+              <th style="width:14%">Avg Score</th>
+              <th style="width:20%">Evidence Level</th>
+              <th style="width:38%">Documented Evidence & Artifacts</th>
+            </tr>
+          </thead>
+          <tbody>
+            ${Z.map((z, k) => {
+              const lvl = S.l[k] !== "" && S.l[k] !== undefined ? EV[S.l[k]] : "Not specified";
+              const colors = ["#b3401a", "#d0661a", "#c78a00", "#1f8a4c", "#00522a"];
+              const pillCol = S.l[k] !== "" && S.l[k] !== undefined ? colors[S.l[k]] : "#57665c";
+              return `
+                <tr>
+                  <td><b>${z[0]}</b><div style="font-size:11px;color:#57665c;margin-top:2px;">${z[1]}</div></td>
+                  <td><b>${R[k].avg === null ? "N/A" : R[k].avg.toFixed(1) + " / 5"}</b></td>
+                  <td><span class="pdf-pill" style="background:${pillCol}">${lvl}</span></td>
+                  <td>${S.t[k] && S.t[k].trim() ? esc(S.t[k]).replace(/\n/g, "<br>") : "<span class='pdf-empty'>No documentation provided.</span>"}</td>
+                </tr>
+              `;
+            }).join("")}
+          </tbody>
+        </table>
+      </div>
+
+      <div class="pdf-footer">
+        This document contains confidential assessment responses and self-reported evidence logs generated by the Hidden Zones of Stagnation (HZOS) diagnostic framework · Phoszade Visioneering 2027.
+      </div>
+    </div>
+  `;
+  generatePDF("HZOS-Interview-Workbook", content, btn);
 }
 
-function dlRep() {
+function dlRep(btn) {
   const R = calc();
   const V = R.filter(r => r.idx !== null);
   const ov = V.length ? V.reduce((a, r) => a + r.idx, 0) / V.length : 0;
   const c = cl(ov);
-  let b = `<h2>Overall stagnation index: ${ov.toFixed(2)} / 5 — ${c[1]}</h2><p class="sm">${c[2]}</p><h2>Zone performance</h2><table><tr><th>Zone</th><th>Avg score</th><th>Stagnation index</th><th>Status</th><th>Evidence</th></tr>${R.map((r, k) => `<tr><td>${r.n}</td><td>${r.avg === null ? "N/A" : r.avg.toFixed(2)}</td><td>${r.idx === null ? "N/A" : r.idx.toFixed(2)}</td><td>${r.idx === null ? "—" : cl(r.idx)[1]}</td><td>${S.l[k] === "" || S.l[k] === undefined ? "—" : "E" + S.l[k]}</td></tr>`).join("")}</table>${sections(R)}<p class="sm">This is a developmental diagnostic instrument, not a clinical or psychological test. Thresholds are proposed operational bands, not validated norms. Interpret scores with documented evidence and professional judgment.</p>`;
-  dl("HZOS-Personal-Stagnation-Report", docHTML("The Hidden Zones of Stagnation: Personal Report", b));
+
+  const content = `
+    <div class="pdf-doc">
+      ${pdfHeaderHTML("Personal Stagnation Diagnostic Report")}
+
+      <div class="pdf-card pdf-hero-card">
+        <div class="pdf-score-box">
+          <div class="pdf-score-label">Overall Stagnation Index</div>
+          <div class="pdf-score-val" style="color:${c[3]}">${ov.toFixed(2)}<span style="font-size:16px;color:#57665c"> / 5.00</span></div>
+          <span class="pdf-pill" style="background:${c[3]};font-size:12px;padding:5px 14px;">${c[1]}</span>
+        </div>
+        <div class="pdf-interp-box">
+          <h4 style="font-size:14px;color:#00522a;margin:0 0 6px;font-weight:700;">Executive Interpretation</h4>
+          <p style="font-size:13.5px;line-height:1.6;margin:0;color:#142019;">${c[2]}</p>
+        </div>
+      </div>
+
+      <div class="pdf-card pdf-radar-wrap">
+        <h3 style="font-size:16px;font-weight:700;color:#00522a;margin:0 0 4px;">Zone Stagnation Radar</h3>
+        <p style="font-size:11.5px;color:#57665c;margin:0 0 12px;">Stagnation Index = 6 − Zone Average. Further from center indicates greater developmental restriction.</p>
+        ${radar(R)}
+        <div class="pdf-legend" style="margin-top:10px;display:flex;justify-content:center;gap:12px;flex-wrap:wrap;">
+          ${CL.map(clItem => `<span style="font-size:11px;display:inline-flex;align-items:center;gap:5px;"><i style="display:inline-block;width:10px;height:10px;border-radius:2px;background:${clItem[3]}"></i>${clItem[1]}</span>`).join("")}
+        </div>
+      </div>
+
+      <div class="pdf-section" style="page-break-before: always;">
+        <h2 class="pdf-section-title">13-Zone Performance Summary</h2>
+        <table class="pdf-table">
+          <thead>
+            <tr>
+              <th>Zone Dimension</th>
+              <th>Avg Score (1-5)</th>
+              <th>Stagnation Index</th>
+              <th>Restriction Status</th>
+              <th>Evidence Tier</th>
+            </tr>
+          </thead>
+          <tbody>
+            ${R.map((r, k) => {
+              const q = r.idx !== null ? cl(r.idx) : null;
+              const lvl = S.l[k] !== "" && S.l[k] !== undefined ? "E" + S.l[k] : "—";
+              return `
+                <tr>
+                  <td><b>${r.n}</b></td>
+                  <td>${r.avg === null ? "N/A" : r.avg.toFixed(2)}</td>
+                  <td><b>${r.idx === null ? "N/A" : r.idx.toFixed(2)}</b></td>
+                  <td>${q ? `<span class="pdf-pill" style="background:${q[3]}">${q[1].replace(" restriction", "")}</span>` : "—"}</td>
+                  <td><b>${lvl}</b></td>
+                </tr>
+              `;
+            }).join("")}
+          </tbody>
+        </table>
+      </div>
+
+      <div class="pdf-section">
+        <h2 class="pdf-section-title">Priority Constraint Analysis & Strategic Focus</h2>
+        ${sections(R)}
+      </div>
+
+      <div class="pdf-footer">
+        This is a developmental diagnostic instrument, not a clinical or psychological test. It does not establish causation or diagnose mental health conditions. Thresholds are proposed operational bands, not validated norms. Interpret scores with documented evidence and professional judgment.
+      </div>
+    </div>
+  `;
+  generatePDF("HZOS-Personal-Stagnation-Report", content, btn);
 }
 
 function report() {
@@ -2342,8 +2769,8 @@ function report() {
       <button class="btn s" onclick="transitionTo(14, 0, 'prev')">← Back to Interview</button>
       <div style="display:flex;gap:10px;flex-wrap:wrap;">
         <button class="btn s" onclick="openResetModal()">Restart</button>
-        <button class="btn s" onclick="dlWork()">Interview workbook (.doc)</button>
-        <button class="btn" onclick="dlRep()">Download report (.doc)</button>
+        <button class="btn s" onclick="dlWork(this)"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="margin-right:6px;"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>Interview workbook (.pdf)</button>
+        <button class="btn" onclick="dlRep(this)"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="margin-right:6px;"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>Download report (.pdf)</button>
       </div>
     </div>
   </div>`;
