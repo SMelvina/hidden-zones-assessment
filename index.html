@@ -1461,18 +1461,22 @@ textarea.modern-input {
   vertical-align: middle;
 }
 
-/* Section Cards in Report */
+/* Section Cards in Report & PDF (Light grey background for optimal contrast) */
 .section-card {
-  background: var(--card);
+  background: #f4f3ef !important;
+  color: #142019 !important;
+  border: 1px solid #e2ded4 !important;
   border-radius: 16px;
-  padding: 32px 36px;
-  margin-bottom: 24px;
-  box-shadow: var(--shadow-card);
+  padding: 28px 32px;
+  margin-bottom: 22px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.04);
+  page-break-inside: avoid !important;
+  break-inside: avoid !important;
 }
 .section-card h3 {
   font-size: 19px;
   font-weight: 800;
-  color: var(--g);
+  color: #00522a !important;
   display: flex;
   align-items: center;
   gap: 10px;
@@ -1486,44 +1490,70 @@ textarea.modern-input {
   width: 28px;
   height: 28px;
   border-radius: 8px;
-  background: linear-gradient(135deg, var(--au), #f0b832);
-  color: #1f1400;
+  background: linear-gradient(135deg, #e4a000, #f0b832) !important;
+  color: #1f1400 !important;
   font-style: normal;
   font-size: 13px;
   font-weight: 800;
+  box-shadow: 0 2px 6px rgba(228, 160, 0, 0.25);
 }
 .section-card h4 {
   font-size: 13px;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.08em;
-  color: var(--mu);
+  color: #48594e !important;
   margin: 18px 0 8px;
 }
-.section-card p, .section-card li {
-  font-size: 15px;
+.section-card p,
+.section-card li,
+.section-card span {
+  color: #142019 !important;
+}
+.section-card p {
+  font-size: 14.5px;
   line-height: 1.6;
+  margin-bottom: 10px;
+}
+.section-card b,
+.section-card strong {
+  color: #0c1811 !important;
+  font-weight: 700;
 }
 .section-card ul {
   padding-left: 20px;
-  margin: 10px 0;
+  margin: 10px 0 14px;
 }
 .section-card li {
+  font-size: 14.5px;
+  line-height: 1.6;
   margin-bottom: 6px;
+  color: #142019 !important;
+}
+.section-card .sm {
+  font-size: 13px;
+  color: #57665c !important;
+  line-height: 1.55;
 }
 .section-card .pl {
   display: grid;
-  grid-template-columns: 100px 1fr;
-  gap: 8px 12px;
-  background: var(--bg);
-  padding: 16px;
-  border-radius: 10px;
-  margin: 14px 0;
+  grid-template-columns: 110px 1fr;
+  gap: 10px 14px;
+  background: #ffffff !important;
+  border: 1px solid #e2ded4 !important;
+  padding: 16px 18px;
+  border-radius: 12px;
+  margin: 16px 0 18px;
   font-size: 14px;
+  color: #142019 !important;
 }
 .section-card .pl b {
-  font-weight: 700;
-  color: var(--g);
+  font-weight: 800;
+  color: #00522a !important;
+}
+.section-card .pl span {
+  color: #142019 !important;
+  line-height: 1.5;
 }
 
 /* PDF Generation & Export Styles */
@@ -1561,7 +1591,7 @@ textarea.modern-input {
   width: 100% !important;
   max-width: 100% !important;
 }
-.pdf-card, .pdf-qa-card, .pdf-hero-card, .pdf-radar-wrap, .pdf-table tr {
+.pdf-card, .pdf-qa-card, .pdf-hero-card, .pdf-radar-wrap, .section-card, .pdf-table tr {
   page-break-inside: avoid !important;
   break-inside: avoid !important;
 }
@@ -1616,6 +1646,34 @@ textarea.modern-input {
   background: #ffffff;
   page-break-inside: avoid;
   break-inside: avoid;
+}
+.pdf-doc .section-card {
+  background: #f4f3ef !important;
+  color: #142019 !important;
+  border: 1px solid #e2ded4 !important;
+  border-radius: 12px;
+  padding: 20px 24px;
+  margin-bottom: 16px;
+  page-break-inside: avoid !important;
+  break-inside: avoid !important;
+}
+.pdf-doc .section-card h3 {
+  font-size: 16.5px;
+  color: #00522a !important;
+  margin-bottom: 10px;
+}
+.pdf-doc .section-card p,
+.pdf-doc .section-card li {
+  font-size: 13px;
+  color: #142019 !important;
+  line-height: 1.55;
+}
+.pdf-doc .section-card .pl {
+  background: #ffffff !important;
+  border: 1px solid #e2ded4 !important;
+  padding: 12px 14px;
+  font-size: 12px;
+  margin: 12px 0;
 }
 .pdf-hero-card {
   display: flex;
@@ -2407,7 +2465,7 @@ function sections(R) {
   let o = `
   <div class="section-card">
     <h3><em>1</em>Where your growth is being restricted</h3>
-    ${soft ? `<p class="sm" style="color:var(--mu);margin-bottom:12px;">No zone reaches moderate restriction. These are the areas to monitor most closely.</p>` : ""}
+    ${soft ? `<p class="sm" style="margin-bottom:12px;">No zone reaches moderate restriction. These are the areas to monitor most closely.</p>` : ""}
     ${zl(hot.slice(0, 6))}
     <h4>Strongest zones</h4>
     ${zl(str)}
@@ -2423,7 +2481,7 @@ function sections(R) {
   o += `
   <div class="section-card">
     <h3><em>2</em>Which capacities are underdeveloped</h3>
-    ${cz.length ? zl(cz) : `<p class="sm" style="color:var(--mu);">No capacity zone reaches moderate restriction.</p>`}
+    ${cz.length ? zl(cz) : `<p class="sm">No capacity zone reaches moderate restriction.</p>`}
     ${w.length ? `<h4>Specific capacities you rated 1 or 2</h4>` + li(w.slice(0, 8).map(x => `${nm(x[1])}: “${Z[x[1]][2][x[2]]}” (${x[0]}/5)`)) : ""}
   </div>`;
 
@@ -2435,7 +2493,7 @@ function sections(R) {
 
   const side = (a, l, ave) => {
     const t = a.filter(k => ix(k) !== null).sort((x, y) => ix(y) - ix(x)).slice(0, 2);
-    return `<h4>${l}${ave === null ? "" : " · average index " + ave.toFixed(2)}</h4>` + (t.length ? zl(t) : "<p class='sm' style='color:var(--mu);'>No data.</p>");
+    return `<h4>${l}${ave === null ? "" : " · average index " + ave.toFixed(2)}</h4>` + (t.length ? zl(t) : "<p class='sm'>No data.</p>");
   };
 
   const dom = ai === null || ae === null ? "" : ae > ai + .3 
@@ -2452,7 +2510,7 @@ function sections(R) {
     <h3><em>3</em>What internal or external conditions are limiting your progress</h3>
     ${side(INT, "Internal: mindset, capacity, discipline, energy, spiritual", ai)}
     ${side(EXT, "External: relationships, resources, environment", ae)}
-    <p style="margin-top:14px;font-weight:600;color:var(--tx);">${dom}</p>
+    <p style="margin-top:14px;font-weight:600;color:#142019;">${dom}</p>
     ${q4 ? `<h4>What you suspect is holding you back</h4><p>${esc(q4)}</p>` : ""}
     ${q6 ? `<h4>What you believe is missing</h4><p>${esc(q6)}</p>` : ""}
   </div>`;
@@ -2463,8 +2521,8 @@ function sections(R) {
   o += `
   <div class="section-card">
     <h3><em>4</em>Which constraints are interconnected</h3>
-    ${pr.length ? li(pr.map(l => `<b>${nm(l[0])} ↔ ${nm(l[1])}</b>: ${l[2]}.`)) : `<p class="sm" style="color:var(--mu);">No directly linked restricted zones were found. Review your Part Two answers for hidden connections.</p>`}
-    <p class="sm" style="color:var(--mu);margin-top:10px;">These links are hypotheses to test with an assessor, not proven causes.</p>
+    ${pr.length ? li(pr.map(l => `<b>${nm(l[0])} ↔ ${nm(l[1])}</b>: ${l[2]}.`)) : `<p class="sm">No directly linked restricted zones were found. Review your Part Two answers for hidden connections.</p>`}
+    <p class="sm" style="margin-top:10px;">These links are hypotheses to test with an assessor, not proven causes.</p>
   </div>`;
 
   const t0 = hot[0], t1 = hot[1], t2 = hot[2];
@@ -2496,7 +2554,7 @@ function sections(R) {
   o += `
   <div class="section-card">
     <h3>Evidence check</h3>
-    ${g.length ? li(g.map(k => `<b>${nm(k)}</b>: self-score ${R[k].avg.toFixed(1)}/5 with evidence at E0–E1 or not given. A high score without proof is itself a finding.`)) : `<p class="sm" style="color:var(--mu);">No high self-scores are unsupported by evidence.</p>`}
+    ${g.length ? li(g.map(k => `<b>${nm(k)}</b>: self-score ${R[k].avg.toFixed(1)}/5 with evidence at E0–E1 or not given. A high score without proof is itself a finding.`)) : `<p class="sm">No high self-scores are unsupported by evidence.</p>`}
   </div>`;
 
   return o;
